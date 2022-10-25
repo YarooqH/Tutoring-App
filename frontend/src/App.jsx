@@ -11,8 +11,9 @@ function App() {
   return (
     <>
       <Nav />
-        <MainPage />
+        {/* <MainPage /> */}
         <Routes>
+            <Route path='/' element={<MainPage />} />
             <Route path='/create-account' element={<SignUp/>} />
             <Route path='/new2' element={<StudentSignIn/>} />
         </Routes>
