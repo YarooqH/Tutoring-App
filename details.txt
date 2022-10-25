@@ -1,0 +1,6 @@
+mongodb+srv://dbadmin:<password>@cluster0.dxxb5fz.mongodb.net/?retryWrites=true&w=majority
+H2srhNqQHQVK3NIG
+
+https://flowbite.com/blocks/
+https://flowrift.com/c/features
+https://tailus.io/
