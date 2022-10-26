@@ -1,45 +1,23 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from "react-router-dom";
 
-import { useNavigate } from 'react-router-dom';
+function AdminSignIn() {
+  const history = useNavigate();
 
-const StudentSignIn = () => {
-
-  const navigate = useNavigate();
-
-  const getData = async () => {
+  const getData = () => {
     const email = document.getElementById('email');
     const password = document.getElementById('password');
 
     // console.log(email.value, password.value);
 
     if(email.value != '' || password.value != ''){
-      let dataRes = await fetchUserData(email.value);
-    
-      if(dataRes){
-        // console.log(email.value);
-        // console.log(password.value);
-        // console.log(dataRes._id);
-        // console.log(dataRes);
-          if(email.value == dataRes._id && password.value == dataRes.password){
-            // navigate('students/student-dashboard');
-            navigate('../students/');
-            // navigate('../tutors/tutor-dashboard');
-
-            email.value = '';
-            password.value = '';
-          } else {
-            const invalidNoti = document.getElementById('invalid-noti');
-            const invalidNotiTxt = document.getElementById('invalid-noti-txt');
-
-            invalidNotiTxt.innerText = 'Incorrect Email or Password.'
-
-            invalidNoti.classList.remove('hidden');
-          }
+      if(email.value == 'admin' && password.value == '1234'){
+        history('admin/dashboard');
       } else {
         const invalidNoti = document.getElementById('invalid-noti');
         const invalidNotiTxt = document.getElementById('invalid-noti-txt');
 
-        invalidNotiTxt.innerText = 'Account Does not Exist.'
+        invalidNotiTxt.innerText = 'Incorrect Email or Password.'
 
         invalidNoti.classList.remove('hidden');
       }
@@ -47,23 +25,15 @@ const StudentSignIn = () => {
       const invalidNoti = document.getElementById('invalid-noti');
       invalidNoti.classList.remove('hidden');
     }
-  }
 
-  const fetchUserData = async (email) => {
-    const response = await fetch('http://localhost:3000/students/'+email);
-    const data = await response.json();
-    // console.log(data);
-
-    return data;
-  }
-
+  } 
   return (
     <>
       <section className="text-gray-400 bg-gray-900 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-12">
-            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Student Sign-In</h1>
-            <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Login and Unleash your Full Academic Potential with the Best Tutors available.</p>
+            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Admin Sign-In</h1>
+            <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Manage the whole Application from just one Place.</p>
           </div>
           <div className="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:px-0 items-end sm:space-x-4 sm:space-y-0 space-y-4">
             <div className="relative sm:mb-0 flex-grow w-full">
@@ -81,8 +51,8 @@ const StudentSignIn = () => {
           </div>
         </div>
       </section>
-    </>
+  </>
   )
 }
 
-export default StudentSignIn;
+export default AdminSignIn

@@ -1,6 +1,8 @@
 import React from 'react'
 import logo from '../assets/img1.svg';
 
+import Nav from './Nav';
+
 
 function MainPage() {
     // const logo = require('../assets/img1.svg');

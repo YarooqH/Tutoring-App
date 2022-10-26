@@ -10,7 +10,7 @@ export class TutorService {
         @InjectModel('Tutor') private readonly tutorModel: Model<Tutor>,
     ) {}
 
-    async insertTutor(name: string, _id: string, password: string, edu_details: {}){
+    async insertTutor(_id: string, name: string, password: string, edu_details: {}){
         const newTutor = new this.tutorModel({
             _id,
             name,
