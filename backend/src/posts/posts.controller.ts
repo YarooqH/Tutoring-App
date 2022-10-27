@@ -33,6 +33,23 @@ export class PostController{
         return newPost;
     }
 
+    @Get(':id')
+    async getPost(
+        @Param('id') postID: string
+    ) {
+        const res = await this.postService.findPost(postID);
+        return res;
+    }
+
+    @Patch(':id')
+    async addProposal (
+        @Param('id') postID: string, proposalID: string
+    ) {
+        const newPost = await this.postService.addProposal(postID, proposalID);
+        return 'Proposal Added';
+    }
+
+
     @Delete(':id')
     async deletePost(
         @Param('id') proposalID: string

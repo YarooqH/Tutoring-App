@@ -81,9 +81,9 @@ const SignUp = () => {
 
         const res = await response.json();
 
-        if (res) {
-            return res;
-        }
+            if (res) {
+                return res;
+            }
         } catch (e) {
             return e;
         }

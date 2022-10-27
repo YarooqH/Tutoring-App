@@ -12,9 +12,9 @@ function MainPage() {
         <a className="flex title-font font-medium items-center justify-center text-white mb-4 md:mb-0">
             <span className="ml-3 text-6xl pb-5">TutoringApp</span>
         </a>
-        <p className='text-white'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga officia corrupti dignissimos tenetur tempora assumenda facere ad. Enim eveniet suscipit laudantium beatae velit reprehenderit nemo repellat, odio earum, molestiae voluptatum.</p>
+        <p className='text-white'>The #1 leading app for Students and Tutors.</p>
+        <img className='w-5/6 pt-20' src={logo} alt="logo"  />
     </div>
-    <img className='w-3/6 pr-3' src={logo} alt="logo"  />
     </div>
   )
 }

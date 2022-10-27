@@ -22,6 +22,8 @@ const StudentSignIn = () => {
         // console.log(dataRes);
           if(email.value == dataRes._id && password.value == dataRes.password){
             // navigate('students/student-dashboard');
+            console.log(JSON.stringify(dataRes));
+            localStorage.setItem('userData', JSON.stringify(dataRes));
             navigate('../students/');
             // navigate('../tutors/tutor-dashboard');
 

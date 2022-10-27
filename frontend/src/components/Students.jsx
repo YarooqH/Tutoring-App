@@ -11,9 +11,9 @@ function Students() {
     <div>
         <StudentNav />
         <Routes>
-        <Route path="/" element={<StudentDashboard />} />
-        <Route path="/students/proposals" element={<StudentProposals />} />
-        <Route path="/students/payments" element={<StudentProposals />} />
+          <Route path="/" element={<StudentDashboard />} />
+          <Route path="/students/proposals" element={<StudentProposals />} />
+          <Route path="/students/payments" element={<StudentProposals />} />
             {/* <Route path="/" element={<MainPage />} />
             <Route path='/create-account' element={<SignUp/>} />
             <Route path='/student-signin' element={<StudentSignIn/>} />

@@ -10,9 +10,9 @@ export class PostService {
         @InjectModel('Post') private readonly postModel: Model<Post>,
     ){}
 
-    async insertPost(studentEmail: string, description: string, studentedu: {}, expectedfees: number, proposalid: string){
+    async insertPost(studentemail: string, description: string, studentedu: {}, expectedfees: number, proposalid: string){
         const newPost = new this.postModel({
-            studentEmail,
+            studentemail,
             description,
             studentedu,
             expectedfees,
@@ -21,6 +21,31 @@ export class PostService {
 
         const result = await newPost.save();
         return result._id as string;
+    }
+
+    async findPost(postID: string): Promise<Post>{
+        let post;
+        try{
+            post = await this.postModel.findById(postID).exec();
+        } catch (err){
+            throw new NotFoundException('Could not find post.');
+        } 
+        if (!post) {
+            throw new NotFoundException('Could not find post.');
+        }
+        return post;
+    }   
+
+    async addProposal(postID: string, proposalID: string){
+        const newProposal = await this.findPost(postID);
+
+        if(proposalID){
+            newProposal.proposalid = proposalID;
+        }
+
+        newProposal.save();
+        return "Proposal Added";
+
     }
 
 
