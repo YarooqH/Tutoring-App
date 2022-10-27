@@ -32,6 +32,14 @@ export class PaymentController{
         return {email: newPayment}
     }
 
+    @Get(':id')
+    async getPayments(
+        @Param('id') tutorEmail: string 
+    ){
+        const payments = await this.paymentService.getTutorPayments(tutorEmail);
+        return payments;
+    }
+
     @Get()
     async getAllPayments(){
         const payments = await this.paymentService.getPayments();

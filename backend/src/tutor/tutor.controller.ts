@@ -36,9 +36,15 @@ export class TutorController{
         return tutors;
     }
 
+    @Get('/emails')
+    async getAllTutorsEmail() {
+        const tutors = await this.tutorService.getAllTutorEmails();
+        return tutors;
+    }
+
     @Get(':id')
-    getTutor(@Param('id') tutorEmail: string){
-        return this.tutorService.getSingleTutor(tutorEmail);
+    async getTutor(@Param('id') tutorEmail: string){
+        return await this.tutorService.getSingleTutor(tutorEmail);
     }
 
     @Delete(':id')

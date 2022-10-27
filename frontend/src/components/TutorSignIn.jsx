@@ -20,7 +20,10 @@ function TutorSignIn() {
         // console.log(dataRes._id);
         // console.log(dataRes);
           if(email.value == dataRes._id && password.value == dataRes.password){
-            navigate('../tutors/dashboard');
+            console.log(JSON.stringify(dataRes));
+            localStorage.setItem('userData', JSON.stringify(dataRes));
+
+            navigate('../tutors/');
 
             email.value = '';
             password.value = '';

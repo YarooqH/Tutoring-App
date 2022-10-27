@@ -10,12 +10,13 @@ export class TutionService {
         @InjectModel('Tution') private readonly tutionModel: Model<Tution>,
     ){}
 
-    async insertTution(tutorName: string, tutorEmail: string, studentName: string, studentEmail: string, tutionFees: number){
+    async insertTution(tutorname: string, tutoremail: string, studentname: string, studentemail: string, tutionfees: number){
         const newTution = new this.tutionModel({
-            tutorName,
-            tutorEmail,
-            studentName,
-            studentEmail
+            tutorname,
+            tutoremail,
+            studentname,
+            studentemail,
+            tutionfees
         });
         const result = await newTution.save();
         return result._id as string;

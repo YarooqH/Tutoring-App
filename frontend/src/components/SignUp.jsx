@@ -14,8 +14,7 @@ const SignUp = () => {
 
         let edu_details = {
             "education": highEducation,
-            "gpa": cgpa,
-            "account_type": accountType
+            "gpa": cgpa
         }
 
         console.log(edu_details);

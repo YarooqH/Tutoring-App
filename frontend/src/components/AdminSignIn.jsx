@@ -12,7 +12,7 @@ function AdminSignIn() {
 
     if(email.value != '' || password.value != ''){
       if(email.value == 'admin' && password.value == '1234'){
-        history('admin/dashboard');
+        history('../admin/');
       } else {
         const invalidNoti = document.getElementById('invalid-noti');
         const invalidNotiTxt = document.getElementById('invalid-noti-txt');

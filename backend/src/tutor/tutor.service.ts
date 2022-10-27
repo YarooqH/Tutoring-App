@@ -32,6 +32,14 @@ export class TutorService {
         }));
     }
 
+    async getAllTutorEmails() {
+        const tutors = await this.tutorModel.find().exec();
+        return tutors.map(tutor => ({
+            email: tutor._id,
+            name: tutor.name
+        }))
+    }
+
     async getSingleTutor(tutorEmail: string){
         const tutor =  await this.findTutor(tutorEmail);
         return {

@@ -10,13 +10,13 @@ export class PaymentService {
         @InjectModel('Payment') private readonly paymentModel: Model<Payment>,
     ){}
 
-    async insertPayment(studentEmail: string, teacherEmail: string, paymentAmount: number, receivedAmount: number, commissionRate: number){
+    async insertPayment(studentemail: string, teacheremail: string, paymentamount: number, receivedamount: number, commissionrate: number){
         const newPayment = new this.paymentModel({
-            studentEmail,
-            teacherEmail,
-            paymentAmount,
-            receivedAmount,
-            commissionRate
+            studentemail,
+            teacheremail,
+            paymentamount,
+            receivedamount,
+            commissionrate
         });
 
         const result = await newPayment.save();
@@ -33,6 +33,17 @@ export class PaymentService {
             receivedAmount: payment.receivedamount,
             commissionRate: payment.commissionrate
         }));
+    }
+
+    async getTutorPayments(teacherEmail: string) {
+        const payments = await this.paymentModel.find({ teacheremail: teacherEmail });
+        return payments.map(payment => ({
+            studentEmail: payment.studentemail,
+            teacherEmail: payment.teacheremail,
+            paymentAmount: payment.paymentamount,
+            receivedAmount: payment.receivedamount,
+            commissionRate: payment.commissionrate
+        }))
     }
 
     // async deletePayment(studentEmail: string){

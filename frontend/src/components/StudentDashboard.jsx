@@ -12,6 +12,7 @@ function StudentDashboard() {
     const userEmail = document.getElementById('user-email');
     
     usersData = JSON.parse(localStorage.getItem('userData'));
+    console.log(usersData);
 
     nameTxt.innerText = usersData.name;
     userEmail.innerText = usersData._id;
