@@ -24,6 +24,93 @@ function TutorPost(props) {
         top2.classList.add('hidden'); 
     }
 
+    // const myBtn = document.getElementsByClassName('btn')[0];
+    // myBtn.addEventListener('click', () => {
+    //     console.log("hello")
+    // });
+
+    // const btn = document.getElementById('btn-'+props.id);
+    // btn.addEventListener('click', () => {
+    //     console.log(props.id);
+    // });
+
+    const getData = async () => {
+        let fees = document.getElementById(`fees`).value;
+        let msg = document.getElementById(`msg`).value;
+
+        console.log(props.id);
+
+        let userData = JSON.parse(localStorage.getItem('userData'));
+
+        let postID = props.id;
+        let tutorEmail = userData._id;
+        let tutorName = userData.name
+        let tutorDetails = userData.edu_details;
+
+        console.log(tutorEmail, tutorName, msg, tutorDetails, parseInt(fees), postID);
+
+        const proposalID = false;
+        //  await makeProposal(tutorEmail, msg, tutorDetails, parseInt(fees), postID);
+
+        if (proposalID) {
+            const postUpdate = await addProposalToPost(postID, proposalID);
+
+            if(postUpdate) {
+                console.log(postUpdate)
+            } else {
+                console.log("error with post");
+            }
+        } else {
+            console.log("error with proposal")
+        }
+    }
+
+    const makeProposal = async (tutorEmail, tutorName, tutorMsg, tutorDetails, tutorFees, postID) => {
+        try {
+            const response = await fetch("http://localhost:3000/proposals", {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify({
+                "tutoremail": tutorEmail,
+                "tutormsg": tutorMsg,
+                "tutordetails": tutorDetails,
+                "tutorfees": tutorFees,
+                "postid": postID
+            }),
+        });
+
+            const res = await response.json();
+            if (res) {
+                return res;
+            }
+        } catch (e) {
+            return e;
+        }
+    }
+
+    const addProposalToPost = async (postID, proposalID) => {
+        try {
+            const response = await fetch("http://localhost:3000/posts/"+postID, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: "PATCH",
+            body: JSON.stringify({
+                "proposalid": proposalID
+            }),
+        });
+
+            const res = await response.json();
+            if (res) {
+                return res;
+            }
+        } catch (e) {
+            return e;
+        }
+    }
+
   return (
     <div className="xl:w-1/3 md:w-1/2 p-4">
     <div className="border border-gray-700 border-opacity-75 p-6 rounded-lg">
@@ -34,7 +121,7 @@ function TutorPost(props) {
         {/* <li>{'Highest Education: ' + post.studentEducation.education}</li>
         <li>{'CGPA: ' + post.studentEducation.gpa}</li> */}
         {props.education ? <li>{'Education: ' + props.education}</li> : <li>{'Education: Error Fetching'}</li>}
-        {props.gpa ? <li>{'CGPA: ' + props.education}</li> : <li>{'CGPA: Error Fetching'}</li>}
+        {props.gpa ? <li>{'CGPA: ' + props.gpa}</li> : <li>{'CGPA: Error Fetching'}</li>}
         {/* <li>{'Education: ' + props.education}</li>
         <li>{'CGPA: ' + props.gpa}</li> */}
       </ul>
@@ -46,35 +133,23 @@ function TutorPost(props) {
     <div id='top2' tabIndex="-1" aria-hidden="true" className="hidden overflow-y-auto overflow-x-hidden fixed top-20 z-50 w-full h-modal md:inset-10 md:h-full">
     <div className="relative p-4 w-full max-w-md h-full md:h-auto">
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <button onClick={closeModal} id='close-btn' type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="authentication-modal">
-                <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            <button onClick={closeModal} id='close-btn' type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white">
+                <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                 <span className="sr-only">Close modal</span>
             </button>
             <div className="py-6 px-6 lg:px-8">
-                <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h3>
-                <form className="space-y-6" action="#">
+                <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">Proposal</h3>
+                <div className="space-y-6">
                     <div>
-                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
-                        <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
+                        <label htmlFor='fees' className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your Fees</label>
+                        <input type="text" name='fees' id='fees' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="6000" required />
                     </div>
                     <div>
-                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your password</label>
-                        <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
+                        <label htmlFor='msg' className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your Message</label>
+                        <input type="text" name='msg' id='msg' placeholder="Enter Your Message" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
                     </div>
-                    <div className="flex justify-between">
-                        <div className="flex items-start">
-                            <div className="flex items-center h-5">
-                                <input id="remember" type="checkbox" value="" className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required />
-                            </div>
-                            <label htmlFor="remember" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
-                        </div>
-                        <a href="#" className="text-sm text-blue-700 hover:underline dark:text-blue-500">Lost Password?</a>
-                    </div>
-                    <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login to your account</button>
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-                        Not registered? <a href="#" className="text-blue-700 hover:underline dark:text-blue-500">Create account</a>
-                    </div>
-                </form>
+                    <button id={'btn-'+props.id} onClick={getData} className="w-full text-white bg-purple-600 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Send Proposal</button>
+                </div>
             </div>
         </div>
     </div>

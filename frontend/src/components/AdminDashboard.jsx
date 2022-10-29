@@ -31,9 +31,7 @@ return (
     {data.map((post) => (
   <div key={post.id} className="xl:w-1/3 md:w-1/2 p-4">
     <div className="border border-gray-700 border-opacity-75 p-6 rounded-lg">
-      <h2 className="text-lg text-white font-medium title-font mb-2"><span className='text-purple-300'>Tutor Name: </span>{post.tutorName}</h2>
       <h2 className="text-lg text-white font-medium title-font mb-2"><span className='text-purple-300'>Tutor Email: </span>{post.tutorEmail}</h2>
-      <h2 className="text-lg text-white font-medium title-font mb-2"><span className='text-green-300'>Student Name: </span>{post.studentName}</h2>
       <h2 className="text-lg text-white font-medium title-font mb-2"><span className='text-green-300'>Student Email: </span>{post.studentEmail}</h2>
       {/* <p className="leading-relaxed text-base">{post.postDescription}</p> */}
       {/* <p className="leading-relaxed text-base text-purple-300 py-3 text-center font-medium">Payment Details</p> */}

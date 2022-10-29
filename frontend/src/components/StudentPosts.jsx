@@ -52,8 +52,7 @@ function StudentPosts() {
            <li>{'Highest Education: ' + post.studentEducation.education}</li>
            <li>{'CGPA: ' + post.studentEducation.gpa}</li>
          </ul>
-         <p className="leading-relaxed text-base text-white float-right my-5">{'Rs. ' + post.expectedFees}</p>
-         <button className='bg-purple-600 px-2 py-2 mt-5 text-sm hover:bg-purple-700 text-white rounded-md'>Send Proposal</button>
+         <p className="leading-relaxed text-base text-white my-5">{'Rs. ' + post.expectedFees}</p>
        </div>
      </div>
             ))}

@@ -77,6 +77,16 @@ const SignUp = () => {
         
     }
 
+    const checkPass = () => {
+        let pass = document.getElementById('password').value;
+        let invalidNoti = document.getElementById('invalid-noti');
+
+        if(pass.length > 20){
+            invalidNoti.innerText = 'Password Length Cannot be more than 20 Characters';
+            invalidNoti.classList.remove('hidden');
+        }
+    }
+
     const postStudentData = async (eMail, fullName, password, eduDetails) => {
         try {
             const response = await fetch("http://localhost:3000/students", {
@@ -156,22 +166,22 @@ const SignUp = () => {
             <h2 className="text-white text-lg font-medium title-font mb-5">Sign Up</h2>
             <div className="relative mb-4">
                 <label htmlFor="email" className="leading-7 text-sm text-gray-400">Email</label>
-                <input type="email" id="email" name="email" className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                <input type="email" id="email" name="email" className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" required/>
             </div>
             <div className="relative mb-4">
                 <label htmlFor="full-name" className="leading-7 text-sm text-gray-400">Full Name</label>
-                <input type="text" id="full-name" name="full-name" className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+                <input type="text" id="full-name" name="full-name" className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" required/>
             </div>
             <div className="relative mb-4">
                 <label htmlFor="password" className="leading-7 text-sm text-gray-400">Password</label>
-                <input type="password" id="password" name="password" className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+                <input type="password" id="password" name="password" onChange={checkPass} className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" required/>
             </div>
             <div className="relative mb-4">
                 <label htmlFor="full-name" className="mb-3 text-white text-lg font-medium title-font mb-5 block">Education Details</label>
                 <label htmlFor="full-name" className="leading-3 text-sm text-gray-400 mb-5">Highest Education</label>
-                <input type="text" id="high-education" name="high-education" className="w-full mt-1 bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 mb-3 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+                <input type="text" id="high-education" name="high-education" className="w-full mt-1 bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 mb-3 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" required/>
                 <label htmlFor="full-name" className="leading-3 text-sm text-gray-400 mb-5">CGPA</label>
-                <input type="text" id="cgpa" name="cgpa" className="w-full mt-1 bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+                <input type="text" id="cgpa" name="cgpa" className="w-full mt-1 bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" required/>
             </div>
 
             

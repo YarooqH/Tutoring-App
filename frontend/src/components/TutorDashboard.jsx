@@ -8,6 +8,8 @@ import TutorPost from './TutorPost';
 function TutorDashboard() {
   
   let usersData;
+
+  let i = 0;
   
   useEffect(() => {
     const nameTxt = document.getElementById('name-txt');

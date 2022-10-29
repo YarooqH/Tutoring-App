@@ -17,15 +17,15 @@ export class ProposalController{
 
     @Post()
     async addProposal(
-        @Body('tutorname') tutorName: string,
         @Body('tutoremail') tutorEmail: string,
+        @Body('tutormsg') tutorMsg: string,
         @Body('tutordetails') tutorDetails: {},
         @Body('tutorfees') tutorFees: number,
         @Body('postid') postID: string 
     ) {
         const newProposal = await this.proposalService.insertProposal(
-           tutorName,
-           tutorEmail,
+            tutorEmail,
+            tutorMsg,
            tutorDetails,
            tutorFees,
            postID
@@ -39,6 +39,22 @@ export class ProposalController{
     ) {
         const res = await this.proposalService.deleteProposal(postID);
         return res;
+    }
+
+    @Get('/tutor/:id')
+    async getTeacherProposals(
+        @Param('id') tutorEmail: string 
+    ){
+        const proposals = await this.proposalService.getTutorProposals(tutorEmail);
+        return proposals;
+    }
+
+    @Get(':id')
+    async getPostProposals(
+        @Param('id') postID: string 
+    ){
+        const proposals = await this.proposalService.getPostProposals(postID);
+        return proposals;
     }
 
     @Get()

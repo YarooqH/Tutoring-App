@@ -10,11 +10,9 @@ export class TutionService {
         @InjectModel('Tution') private readonly tutionModel: Model<Tution>,
     ){}
 
-    async insertTution(tutorname: string, tutoremail: string, studentname: string, studentemail: string, tutionfees: number){
+    async insertTution(tutoremail: string, studentemail: string, tutionfees: number){
         const newTution = new this.tutionModel({
-            tutorname,
             tutoremail,
-            studentname,
             studentemail,
             tutionfees
         });
@@ -27,9 +25,7 @@ export class TutionService {
         const tutions = await this.tutionModel.find().exec();
         return tutions.map(tution => ({
             id: tution._id,
-            tutorName: tution.tutorname,
             tutorEmail: tution.tutoremail,
-            studentName: tution.studentname,
             studentEmail: tution.studentemail,
             tutionFees: tution.tutionfees
         }));

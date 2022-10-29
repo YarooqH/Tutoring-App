@@ -10,16 +10,16 @@ export class ProposalService {
         @InjectModel('Proposal') private readonly proposalModel: Model<Proposal>,
     ){}
 
-    async insertProposal(tutorName: string, tutorEmail: string , tutorDetails: {}, tutorFees: number, postID: string){
+    async insertProposal(tutoremail: string, tutormsg: string, tutordetails: {}, tutorfees: number, postid: string){
         const newProposal = new this.proposalModel({
-            tutorName,
-            tutorEmail,
-            tutorDetails,
-            tutorFees,
-            postID
+            tutoremail,
+            tutormsg,
+            tutordetails,
+            tutorfees,
+            postid
         });
         const result = await newProposal.save();
-        return result._id as string;
+        return result._id;
     }
 
 
@@ -27,12 +27,41 @@ export class ProposalService {
         const proposals = await this.proposalModel.find().exec();
         return proposals.map(proposal => ({
             id: proposal._id,
-            tutorName: proposal.tutorname,
             tutorEmail: proposal.tutoremail,
+            tutorMsg: proposal.tutormsg,
             tutorDetails: proposal.tutordetails,
             tutorFees: proposal.tutorfees,
             postID: proposal.postid
         }));
+    }
+
+    async getTutorProposals(teacherEmail: string) {
+        const proposals = await this.proposalModel.find({ teacheremail: teacherEmail });
+        return proposals.map(proposal => ({
+            id: proposal._id,
+            teacherEmail: proposal.tutoremail,
+            tutorMsg: proposal.tutormsg,
+            tutorDetails: proposal.tutordetails,
+            tutorFees: proposal.tutorfees,
+            postID: proposal.postid
+        }))
+    }
+
+    // async deleteProposals(postID: string) {
+    //     const proposals = await this.proposalModel.deleteMany({postid: postID});
+    //     return 'deleted';
+    // }
+
+    async getPostProposals(postID: string) {
+        const proposals = await this.proposalModel.find({ postid: postID });
+        return proposals.map(proposal => ({
+            id: proposal._id,
+            teacherEmail: proposal.tutoremail,
+            tutorMsg: proposal.tutormsg,
+            tutorDetails: proposal.tutordetails,
+            tutorFees: proposal.tutorfees,
+            postID: proposal.postid
+        }))
     }
 
     async deleteProposal(postID: string){

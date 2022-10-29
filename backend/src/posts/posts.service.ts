@@ -81,8 +81,8 @@ export class PostService {
         }));
     }
 
-    async deletePost(propID: string){
-        const result = await this.postModel.deleteOne({proposalid: propID}).exec();
+    async deletePost(postID: string){
+        const result = await this.postModel.deleteOne({_id: postID}).exec();
         if(!result){
             throw new NotFoundException("Could not find the post");
         }
