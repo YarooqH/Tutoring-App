@@ -9,7 +9,7 @@ function TutorDashboard() {
   
   let usersData;
 
-  let i = 0;
+  // let i = 0;
   
   useEffect(() => {
     const nameTxt = document.getElementById('name-txt');
@@ -74,9 +74,9 @@ function TutorDashboard() {
     {status === "loading" && <p>Fetching data...</p>}
     {status === 'success' && (
     <div className="flex flex-wrap m-4">
-        {data.map((post) => (
+        {data.map((post, index) => (
           // {let education = post.studentEducation.education ? post.studentEducation.education : 'not found'}
-          <TutorPost key={post.id} data={post} id={post.id} studentEmail={post.studentEmail} postDescription={post.postDescription} education={post.studentEducation.education} gpa={post.studentEducation.gpa} expectedFees={post.expectedFees} />
+          <TutorPost key={post.id} data={post} i={index} id={post.id} studentEmail={post.studentEmail} postDescription={post.postDescription} education={post.studentEducation.education} gpa={post.studentEducation.gpa} expectedFees={post.expectedFees} />
         ))}
     </div>
     )}

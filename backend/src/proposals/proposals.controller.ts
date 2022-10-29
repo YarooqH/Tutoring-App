@@ -21,14 +21,16 @@ export class ProposalController{
         @Body('tutormsg') tutorMsg: string,
         @Body('tutordetails') tutorDetails: {},
         @Body('tutorfees') tutorFees: number,
+        @Body('studentemail') studentEmail: string,
         @Body('postid') postID: string 
     ) {
         const newProposal = await this.proposalService.insertProposal(
             tutorEmail,
             tutorMsg,
-           tutorDetails,
-           tutorFees,
-           postID
+            tutorDetails,
+            tutorFees,
+            studentEmail,
+            postID
         );
         return newProposal;
     }
@@ -46,6 +48,14 @@ export class ProposalController{
         @Param('id') tutorEmail: string 
     ){
         const proposals = await this.proposalService.getTutorProposals(tutorEmail);
+        return proposals;
+    }
+
+    @Get('/student/:id')
+    async getStudentProposals(
+        @Param('id') studentEmail: string 
+    ){
+        const proposals = await this.proposalService.getStudentProposals(studentEmail);
         return proposals;
     }
 

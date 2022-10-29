@@ -48,10 +48,15 @@ function StudentPosts() {
          <h2 className="text-lg text-white font-medium title-font mb-2">{post.studentEmail}</h2>
          <p className="leading-relaxed text-base">{post.postDescription}</p>
          <p className="leading-relaxed text-base text-purple-300 py-3 text-center font-medium">Student Education Details </p>
+          {status === "error" && <p>Error fetching data</p>}
+          {status === "loading" && <p>Fetching data...</p>}
+          {status === "success" && (
          <ul>
            <li>{'Highest Education: ' + post.studentEducation.education}</li>
            <li>{'CGPA: ' + post.studentEducation.gpa}</li>
          </ul>
+
+          )}
          <p className="leading-relaxed text-base text-white my-5">{'Rs. ' + post.expectedFees}</p>
        </div>
      </div>

@@ -50,6 +50,7 @@ const SignUp = () => {
                     successNoti.classList.remove("hidden");
 
                     setTimeout(() => {
+                        successNoti.classList.add('hidden');
                         navigate('/student-signin');
                     }, 1500);
                 }
@@ -66,6 +67,7 @@ const SignUp = () => {
                     successNoti.classList.remove("hidden");
 
                     setTimeout(() => {
+                        successNoti.classList.add('hidden');
                         navigate('/tutor-signin');
                     }, 1500);   
                 }
@@ -73,6 +75,10 @@ const SignUp = () => {
         } else {
             const invalidNoti = document.getElementById('invalid-noti');
             invalidNoti.classList.remove("hidden");
+
+            setTimeout(()=> {
+                invalidNoti.classList.add('hidden');
+            }, 4000);
         }
         
     }
@@ -84,6 +90,10 @@ const SignUp = () => {
         if(pass.length > 20){
             invalidNoti.innerText = 'Password Length Cannot be more than 20 Characters';
             invalidNoti.classList.remove('hidden');
+
+            setTimeout(()=> {
+                invalidNoti.classList.add('hidden');
+            }, 4000);
         }
     }
 

@@ -6,7 +6,8 @@ import StudentProposal from './StudentProposal';
 function StudentProposals() {
 
   const getProposals = async () => {
-    const response = await fetch('http://localhost:3000/proposals/');
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    const response = await fetch('http://localhost:3000/proposals/student/'+userData._id);
     const data = await response.json();
     console.log(data);
 

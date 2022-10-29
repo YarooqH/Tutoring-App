@@ -34,8 +34,8 @@ function TutorPayments() {
             <section className="text-gray-400 bg-gray-900 body-font relative">
         <div className="container px-5 py-5 mx-auto">
         <div className="flex flex-col text-center w-full mb-12">
-        <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Available Tutoring Posts</h1>
-        <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Dont miss the Golden Opportunity to help students in need.</p>
+        <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Payments</h1>
+        <p className="lg:w-2/3 mx-auto leading-relaxed text-base">All your payments All-in-One place.</p>
         </div>
         <section className="text-gray-400 body-font bg-gray-900">
         <div className="container px-5  mx-auto">

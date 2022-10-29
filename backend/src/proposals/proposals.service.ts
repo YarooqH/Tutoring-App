@@ -10,12 +10,13 @@ export class ProposalService {
         @InjectModel('Proposal') private readonly proposalModel: Model<Proposal>,
     ){}
 
-    async insertProposal(tutoremail: string, tutormsg: string, tutordetails: {}, tutorfees: number, postid: string){
+    async insertProposal(tutoremail: string, tutormsg: string, tutordetails: {}, tutorfees: number, studentemail: string, postid: string){
         const newProposal = new this.proposalModel({
             tutoremail,
             tutormsg,
             tutordetails,
             tutorfees,
+            studentemail,
             postid
         });
         const result = await newProposal.save();
@@ -31,6 +32,7 @@ export class ProposalService {
             tutorMsg: proposal.tutormsg,
             tutorDetails: proposal.tutordetails,
             tutorFees: proposal.tutorfees,
+            studentEmail: proposal.studentemail,
             postID: proposal.postid
         }));
     }
@@ -43,6 +45,20 @@ export class ProposalService {
             tutorMsg: proposal.tutormsg,
             tutorDetails: proposal.tutordetails,
             tutorFees: proposal.tutorfees,
+            studentEmail: proposal.studentemail,
+            postID: proposal.postid
+        }))
+    }
+
+    async getStudentProposals(studentEmail: string) {
+        const proposals = await this.proposalModel.find({ studentemail: studentEmail });
+        return proposals.map(proposal => ({
+            id: proposal._id,
+            teacherEmail: proposal.tutoremail,
+            tutorMsg: proposal.tutormsg,
+            tutorDetails: proposal.tutordetails,
+            tutorFees: proposal.tutorfees,
+            studentEmail: proposal.studentemail,
             postID: proposal.postid
         }))
     }
@@ -60,6 +76,7 @@ export class ProposalService {
             tutorMsg: proposal.tutormsg,
             tutorDetails: proposal.tutordetails,
             tutorFees: proposal.tutorfees,
+            studentEmail: proposal.studentemail,
             postID: proposal.postid
         }))
     }

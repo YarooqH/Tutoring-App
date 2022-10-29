@@ -19,12 +19,21 @@ function StudentProposal(props) {
         let studentEmail = data.studentemail;
         let fees = props.data.tutorFees;
         let postID = props.data.postID;
+        let successNoti = document.getElementById('success-noti');
 
         const tutionRes = await addTution(tutorEmail, studentEmail, fees);
 
         if(tutionRes){
-            // let delProposalRes = await deleteProposal(postID);
-            // let delPostRes = await deletePost(postID);
+
+            successNoti.classList.remove('hidden');
+            setTimeout(() => {
+                successNoti.classList.add('hidden');
+            }, 5000);
+
+            let delProposalRes = await deleteProposal(postID);
+            let delPostRes = await deletePost(postID);
+
+            window.location.reload(false);
         } else {
 
         }
@@ -94,7 +103,7 @@ function StudentProposal(props) {
     <>
     <div className="xl:w-1/3 md:w-1/2 p-4">
         <div className="border border-gray-700 border-opacity-75 p-6 rounded-lg">
-          <h2 className="text-lg text-white font-medium title-font mb-2">From: {props.data.tutorEmail}</h2>
+          <h2 className="text-lg text-white font-medium title-font mb-2">From: {props.data.teacherEmail}</h2>
             {status === "error" && <p>Error fetching data</p>}
             {status === "loading" && <p>Fetching data...</p>}
             {status === 'success' && (
@@ -108,6 +117,9 @@ function StudentProposal(props) {
           <button onClick={accept} className='bg-purple-600 px-2 py-2 mt-5 text-sm hover:bg-purple-700 text-white rounded-md'>Accept Proposal</button>
         </div>
       </div>
+      <div id='success-noti' className="animate-bounce hidden fixed bottom-0 left-0 m-4 p-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+            <span className="font-medium">Tution Started!</span>
+        </div>
     </>
   )
 }

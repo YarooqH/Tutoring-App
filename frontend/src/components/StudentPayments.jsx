@@ -22,11 +22,24 @@ function StudentPayments() {
 
         if(tutorEmail != '' && paymentFees > 0){
             let newData = JSON.parse(localStorage.getItem('userData'));
-            postPayment(newData._id, tutorEmail, paymentFees);
+            let paymentRes = postPayment(newData._id, tutorEmail, paymentFees);
+
+            if(paymentRes){
+              const successNoti = document.getElementById('success-noti');
+              successNoti.classList.remove('hidden')
+            }
+
+            setInterval(() => {
+              successNoti.classList.add('hidden')
+            }, 3000)
             // console.log("here" + newData);
         } else {
             const invalidNoti = document.getElementById('invalid-noti');
             invalidNoti.classList.remove("hidden");
+
+            setInterval(() => {
+              invalidNoti.classList.add('hidden')
+            }, 3000)
         }
 
     }
@@ -81,10 +94,10 @@ function StudentPayments() {
         </div>
         <div className="p-2 w-full">
           <div className="relative">
-            <label htmlFor="message" className="leading-7 text-sm text-gray-400">Message</label>
+            <label htmlFor="message" className="leading-7 text-sm text-gray-400">Tutor Email</label>
             <select type="text" id="tutors" name="tutors" placeholder='Select Tutor' className="w-full py-3 px-3 bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            {status === "error" && <p>Error fetching data</p>}
-            {status === "loading" && <p>Fetching data...</p>}
+            {status === "error" && <option>Error fetching data</option>}
+            {status === "loading" && <option>Fetching data...</option>}
             {status === "success" && (
                 data.map((tutor) => (
                     <option key={tutor.email} value={tutor.email}>{tutor.email}</option>
@@ -101,6 +114,9 @@ function StudentPayments() {
     <div id='invalid-noti' className="animate-bounce hidden fixed bottom-0 left-0 p-4 m-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
             <span id='invalid-noti-txt' className="font-medium">Please Fill all Fields!</span>
           </div>
+    <div id='success-noti' className="animate-bounce hidden fixed bottom-0 left-0 m-4 p-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+          <span className="font-medium">Payment Successfuly!</span>
+      </div>
   </div>
 </section>
         </div>
