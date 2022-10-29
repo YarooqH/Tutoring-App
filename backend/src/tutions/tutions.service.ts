@@ -31,6 +31,7 @@ export class TutionService {
         }));
     }
 
+    
     // async deleteProposal(postID: string){
     //     const result = await this.proposalModel.deleteMany({postid: postID}).exec();
     //     if(!result){

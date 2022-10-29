@@ -17,16 +17,12 @@ export class TutionsController{
 
     @Post()
     async addTution(
-        @Body('tutorname') tutorName: string,
         @Body('tutoremail') tutorEmail: string,
-        @Body('studentname') studentName: string,
         @Body('studentemail') studentEmail: string,
         @Body('tutionfees') tutionFees: number
     ) {
         const newTution = await this.tutionService.insertTution(
-           tutorName,
            tutorEmail,
-           studentName,
            studentEmail,
            tutionFees
         );

@@ -76,7 +76,7 @@ function StudentProposal(props) {
             body: JSON.stringify({
                 "tutoremail": tutorEmail,
                 "studentemail": studentEmail,
-                "tutionFees": tutionFees
+                "tutionfees": tutionFees
             }),
         });
 
