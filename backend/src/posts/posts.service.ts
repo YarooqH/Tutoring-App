@@ -36,18 +36,38 @@ export class PostService {
         return post;
     }   
 
-    async addProposal(postID: string, proposalID: string){
-        const newProposal = await this.findPost(postID);
-
-        if(proposalID){
-            newProposal.proposalid = proposalID;
-        }
-
-        newProposal.save();
-        return "Proposal Added";
-
+    async getStudentPost(studentEmail: string) {
+        let posts = await this.postModel.find({ studentemail: studentEmail });
+        return posts.map(post => ({
+            id: post._id,
+            studentEmail: post.studentemail,
+            postDescription: post.description,
+            studentEducation: post.studentedu,
+            expectedFees: post.expectedfees,
+            proposalID: post.proposalid
+        }));
     }
 
+    // async addProposal(postID: string, proposalID: string){
+    //     const newProposal = await this.findPost(postID);
+
+    //     if(proposalID){
+    //         newProposal.proposalid = proposalID;
+    //     }
+
+    //     newProposal.save();
+    //     return "Proposal Added";
+
+    // }
+    async addProposal(postID: string, proposalID: string){
+        let post = await this.findPost(postID);
+        if(proposalID) {
+           post.proposalid = [...post.proposalid, proposalID];
+        }
+        post.save();
+
+        return post.proposalid;
+    }
 
     async getPosts(){
         const posts = await this.postModel.find().exec();

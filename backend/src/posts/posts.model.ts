@@ -5,7 +5,7 @@ export const PostSchema = new mongoose.Schema({
     description: {type: String, required: true},
     studentedu: {type: {}, required: true},
     expectedfees: {type: Number, required: true},
-    proposalid: {type: String}
+    proposalid: {type: [String]}
 })
 
 export interface Post extends mongoose.Document {
@@ -13,5 +13,5 @@ export interface Post extends mongoose.Document {
     description: string,
     studentedu: {},
     expectedfees: number,
-    proposalid: string
+    proposalid: string[]
 }

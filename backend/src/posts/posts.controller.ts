@@ -42,11 +42,29 @@ export class PostController{
     }
 
     @Patch(':id')
-    async addProposal (
-        @Param('id') postID: string, proposalID: string
+    async addProposal(
+        @Param('id') postID: string, 
+        @Body('proposalid') proposalID: string
     ) {
-        const newPost = await this.postService.addProposal(postID, proposalID);
-        return 'Proposal Added';
+        const updatedPost = await this.postService.addProposal(postID, proposalID);
+        // return `Proposal ID: ${proposalID}`;
+       return updatedPost;
+    }
+
+    // @Patch(':id')
+    // async addProposal (
+    //     @Param('id') postID: string, proposalID: string
+    // ) {
+    //     const newPost = await this.postService.addProposal(postID, proposalID);
+    //     return 'Proposal Added';
+    // }
+
+    @Get('/post/:id')
+    async getStudentPosts(
+        @Param('id') studentEmail: string
+    ) {
+        const posts = await this.postService.getStudentPost(studentEmail);
+        return posts;
     }
 
 

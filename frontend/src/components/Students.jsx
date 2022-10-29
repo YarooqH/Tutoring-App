@@ -6,6 +6,7 @@ import StudentNav from './StudentNav';
 // import Student from './Student';
 import StudentProposals from './StudentProposals';
 import StudentPayments from './StudentPayments';
+import StudentPosts from './StudentPosts';
 
 function Students() {
   return (
@@ -13,8 +14,9 @@ function Students() {
         <StudentNav />
         <Routes>
           <Route path="/" element={<StudentDashboard />} />
-          <Route path="/students/proposals" element={<StudentProposals />} />
+          <Route path="/proposals" element={<StudentProposals />} />
           <Route path="/payments" element={<StudentPayments />} />
+          <Route path="/posts" element={<StudentPosts />} />
         </Routes>
     </div>
   )

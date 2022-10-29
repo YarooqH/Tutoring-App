@@ -65,7 +65,7 @@ function StudentDashboard() {
     <div>
       <section className="text-gray-400 bg-gray-900 body-font">
         <div className="container px-5 py-24 mx-auto">
-          <h1 id='name-txt' className="text-3xl font-medium title-font text-white text-left">Name</h1>
+          <h1 id='name-txt' className="text-3xl font-medium title-font ml-10 text-white text-left">Name</h1>
           <section className="text-gray-400 bg-gray-900 body-font relative">
   <div className="container px-5 py-5 mx-auto">
     <div className="flex flex-col text-center w-full mb-12">

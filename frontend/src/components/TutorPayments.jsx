@@ -3,11 +3,16 @@ import React from 'react'
 import {useQuery} from 'react-query';
 import {useEffect} from 'react';
 
+import TutorPayment from './TutorPayment';
+
 function TutorPayments() {
     let userData;
 
     useEffect(() => {
         userData = JSON.parse(localStorage.getItem('userData'));
+
+        const nameTxt = document.getElementById('name-txt');
+        nameTxt.innerText = userData.name;
     }, [])
 
     const getPosts = async () => {
@@ -39,21 +44,7 @@ function TutorPayments() {
         {status === 'success' && (
         <div className="flex flex-wrap m-4">
             {data.map((post) => (
-        <div key={post.id} className="xl:w-1/3 md:w-1/2 p-4">
-            <div className="border border-gray-700 border-opacity-75 p-6 rounded-lg">
-            <h2 className="text-lg text-white font-medium title-font mb-2"><span className='text-purple-300'>From: </span>{post.studentEmail}</h2>
-            {/* <p className="leading-relaxed text-base">{post.postDescription}</p> */}
-            <p className="leading-relaxed text-base text-purple-300 py-3 text-center font-medium">Payment Details</p>
-            {/* <ul>
-                <li>{'Highest Education: ' + post.studentEducation.education}</li>
-                <li>{'CGPA: ' + post.studentEducation.gpa}</li>
-            </ul> */}
-            <p className="leading-relaxed text-base font-medium text-white my-5">Amount Received: {'Rs. ' + post.receivedAmount}</p>
-            <p className="leading-relaxed text-base text-white">Amount Paid: {'Rs. ' + post.paymentAmount}</p>
-            <p className="leading-relaxed text-base text-white">Commission Rate: {post.commissionRate + '%'}</p>
-            {/* <button className='bg-purple-600 px-2 py-2 mt-5 text-sm hover:bg-purple-700 text-white rounded-md'>Accept Proposal</button> */}
-            </div>
-        </div>
+                <TutorPayment key={post.id} id={post.id} data={post} studentEmail={post.studentEmail} receivedAmount={post.receivedAmount} paymentAmount={post.paymentAmount} commissionRate={post.commissionRate} />
             ))}
         </div>
         )}

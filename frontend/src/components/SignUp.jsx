@@ -2,8 +2,11 @@ import React from 'react';
 
 import '../styles/signup.css';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+    const navigate = useNavigate();
+
     const completeSignup = () => {
         let email = document.getElementById('email').value;
         let fullName = document.getElementById('full-name').value;
@@ -30,7 +33,10 @@ const SignUp = () => {
         }
 
         console.log(dataObj);
-        if (email != '' || fullName != '' || pass != '' || highEducation != '' || cgpa != ''){
+        console.log(cgpa);
+        console.log(highEducation);
+
+        if (email != '' && fullName != '' && pass != '' && highEducation != '' && cgpa != ''){
             if (accountType == "student"){
                 const res = postStudentData(email, fullName, pass, edu_details);
                 if ( res ){
@@ -42,6 +48,10 @@ const SignUp = () => {
     
                     const successNoti = document.getElementById('success-noti');
                     successNoti.classList.remove("hidden");
+
+                    setTimeout(() => {
+                        navigate('/student-signin');
+                    }, 1500);
                 }
             } else if (accountType == "tutor"){
                 const res = postTutorData(email, fullName, pass, edu_details);
@@ -54,6 +64,10 @@ const SignUp = () => {
     
                     const successNoti = document.getElementById('success-noti');
                     successNoti.classList.remove("hidden");
+
+                    setTimeout(() => {
+                        navigate('/tutor-signin');
+                    }, 1500);   
                 }
             }
         } else {

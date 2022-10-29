@@ -12,10 +12,10 @@ const Nav = () => {
             <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
                 
                 {/* <Link to={/studentsignup}>Student Sign In</Link> */}
-                <Link className="mr-5 text-white hover:text-purple-300 font-medium cursor-pointer" to="/student-signin" > Student </Link>
-                <Link className="mr-5 text-white hover:text-purple-300 font-medium cursor-pointer" to="/tutor-signin" > Tutor </Link>
-                <Link className="mr-5 text-white hover:text-purple-300 font-medium cursor-pointer" to="/admin-signin" > Admin  </Link>
-                <Link className="mr-5 text-purple-500 hover:text-purple-300 font-medium cursor-pointer" to="/create-account" > Create an Account </Link>
+                <Link className="mr-5 text-white hover:text-purple-300 font-medium cursor-pointer border-b-4 p-3 rounded border-purple-500" to="/student-signin" > Student </Link>
+                <Link className="mr-5 text-white hover:text-purple-300 font-medium cursor-pointer border-b-4 p-3 rounded border-purple-500" to="/tutor-signin" > Tutor </Link>
+                <Link className="mr-5 text-white hover:text-purple-300 font-medium cursor-pointer border-b-4 p-3 rounded border-purple-500" to="/admin-signin" > Admin  </Link>
+                <Link className="mr-5 text-white hover:text-purple-300 font-medium cursor-pointer border-b-4 p-3 rounded border-purple-500" to="/create-account" > Create an Account </Link>
             {/* <a className="mr-5 text-white hover:text-white font-medium cursor-pointer"></a> */}
             {/* <a className="mr-5 text-white hover:text-white font-medium cursor-pointer">Tutor Sign in</a>
             <a className="mr-5 text-white hover:text-white font-medium cursor-pointer">Admin Sign in</a> */}
