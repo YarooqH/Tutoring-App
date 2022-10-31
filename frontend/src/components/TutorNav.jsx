@@ -1,7 +1,5 @@
 import React from 'react';
 
-import {Link} from 'react-router-dom';
-
 function TutorNav() {
     const deleteStorage = () => {
         let data = localStorage.getItem('userData');
