@@ -12,16 +12,18 @@ function StudentProposal(props) {
 
     const {data, status} = useQuery("posts", getPost);
 
-    console.log(data)
-
+    
     const accept = async () => {
-        let tutorEmail = props.data.tutorEmail;
+        let tutorEmail = props?.data?.teacherEmail;
         let studentEmail = data.studentemail;
         let fees = props.data.tutorFees;
         let postID = props.data.postID;
         let successNoti = document.getElementById('success-noti');
-
+        
+        
+        console.log(props, "sdsdsds")
         const tutionRes = await addTution(tutorEmail, studentEmail, fees);
+        // const tutionRes = false
 
         if(tutionRes){
 
@@ -33,7 +35,7 @@ function StudentProposal(props) {
             let delProposalRes = await deleteProposal(postID);
             let delPostRes = await deletePost(postID);
 
-            window.location.reload(false);
+            // window.location.reload(false);
         } else {
 
         }
@@ -76,6 +78,7 @@ function StudentProposal(props) {
     }
 
     const addTution = async (tutorEmail, studentEmail, tutionFees) => {
+        console.log("tutor", tutorEmail, studentEmail, tutionFees)
         try {
             const response = await fetch("http://localhost:3000/tutions", {
             headers: {

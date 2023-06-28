@@ -28,7 +28,8 @@ import { TutionModule } from './tutions/tutions.module';
     ProposalModule,
     TutionModule,
     MongooseModule.forRoot(
-      'mongodb+srv://dbadmin:H2srhNqQHQVK3NIG@cluster0.olqaw7z.mongodb.net/?retryWrites=true&w=majority',
+      // 'mongodb+srv://test:1234@cluster0.olqaw7z.mongodb.net/?retryWrites=true&w=majority',
+      "mongodb+srv://test:1234@cluster0.dvmvmpu.mongodb.net/?retryWrites=true&w=majority",
     ),
   ],
   controllers: [AppController],
